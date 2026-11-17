@@ -1,0 +1,174 @@
+/* Videowall Açaí x You: 4 Monitore quer nebeneinander, je 1920 x 1080. Look der Website: Nacht Lila, Neon Pink, Unbounded. */
+@font-face { font-family: Unbounded; src: url(../assets/fonts/unbounded-latin-wght-normal.woff2) format("woff2"); font-weight: 200 900; font-display: block; }
+@font-face { font-family: Montserrat; src: url(../assets/fonts/montserrat-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: Montserrat; src: url(../assets/fonts/montserrat-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: Montserrat; src: url(../assets/fonts/montserrat-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: Montserrat; src: url(../assets/fonts/montserrat-latin-800-normal.woff2) format("woff2"); font-weight: 800; font-display: block; }
+@font-face { font-family: Poppins; src: url(../assets/fonts/poppins-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: Poppins; src: url(../assets/fonts/poppins-latin-500-normal.woff2) format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: Poppins; src: url(../assets/fonts/poppins-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: Poppins; src: url(../assets/fonts/poppins-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-display: block; }
+
+:root { --nacht: #120018; --acai: #2a0738; --pink: #ff4fa3; --pink-hell: #ff86c5; --flieder: #e9dcfb; --violett: #7c3aed; }
+html, body { margin: 0; height: 100%; background: #050208; overflow: hidden; }
+#blende { position: absolute; overflow: hidden; }
+#board { position: absolute; left: 0; top: 0; width: 7680px; height: 1080px; transform-origin: 0 0; opacity: 0; }
+body.bereit #board { opacity: 1; }
+#wand { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; overflow: hidden; background: var(--nacht); }
+.szene { position: absolute; inset: 0; }
+.schirm { position: absolute; top: 0; width: 1920px; height: 1080px; overflow: hidden; color: #fff; font-family: Poppins, sans-serif; }
+.fuge { position: absolute; top: 0; width: 10px; height: 1080px; margin-left: -5px; background: #050208; z-index: 90; }
+img { user-select: none; }
+.wechsel { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; z-index: 50; display: none; }
+.lichter { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; mix-blend-mode: screen; pointer-events: none; }
+
+/* ---------------------------------------------------------------- Neon für YOUR (Stärke über --an) */
+em { font-style: normal; color: color-mix(in srgb, #ffd3ea calc(var(--an, 1) * 100%), #5a3350);
+  text-shadow: 0 0 calc(14px * var(--an, 1)) rgba(255, 79, 163, calc(0.95 * var(--an, 1))), 0 0 calc(46px * var(--an, 1)) rgba(255, 79, 163, calc(0.8 * var(--an, 1))), 0 0 calc(120px * var(--an, 1)) rgba(255, 79, 163, calc(0.5 * var(--an, 1))); }
+
+/* ---------------------------------------------------------------- Dschungel Kino */
+.dschungel { background: #080b05; }
+.kamera { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform; }
+.kamera .grund { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; }
+.stueck { position: absolute; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.voll { background-size: 100% 100%; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; opacity: 0; }
+.regen img { position: absolute; left: 0; top: 0; opacity: 0; filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.45)); }
+.clip { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; object-fit: fill; }
+.fx { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; }
+.strahlen { position: absolute; left: 2300px; top: -220px; width: 3700px; height: 1560px; mix-blend-mode: screen; pointer-events: none; filter: blur(16px);
+  background: repeating-linear-gradient(113deg, rgba(255, 214, 150, 0) 0 70px, rgba(255, 220, 160, 0.1) 110px 150px, rgba(255, 214, 150, 0) 200px 330px, rgba(255, 226, 170, 0.07) 360px 420px, rgba(255, 214, 150, 0) 470px 560px);
+  -webkit-mask-image: radial-gradient(1500px 1150px at 76% 6%, #000 0, rgba(0, 0, 0, 0.55) 45%, transparent 76%); mask-image: radial-gradient(1500px 1150px at 76% 6%, #000 0, rgba(0, 0, 0, 0.55) 45%, transparent 76%); }
+.staub { position: absolute; left: 0; top: 0; width: 5760px; height: 1080px; mix-blend-mode: screen; pointer-events: none; }
+.vorn svg { position: absolute; filter: blur(15px); opacity: 0.92; }
+.scrim { position: absolute; left: 0; top: 0; width: 4300px; height: 1080px; opacity: 0;
+  background: linear-gradient(90deg, rgba(6, 3, 8, 0.5) 0, rgba(6, 3, 8, 0.42) 68%, rgba(6, 3, 8, 0) 100%); }
+.spruch { position: absolute; top: 0; width: 1920px; height: 1080px; font-family: Unbounded, sans-serif; color: #fff; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7), 0 2px 90px rgba(0, 0, 0, 0.6); }
+.spruch.eins { left: 0; } .spruch.zwei { left: 1920px; }
+.spruch > * { opacity: 0; }
+.eins .logo { position: absolute; left: 124px; top: 64px; height: 214px; filter: drop-shadow(0 6px 30px rgba(0, 0, 0, 0.5)); }
+.eins .from { position: absolute; left: 132px; top: 338px; font-weight: 700; font-size: 124px; letter-spacing: -0.02em; line-height: 1; }
+.eins .amazon { position: absolute; left: 118px; top: 486px; font-weight: 800; font-size: 340px; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; opacity: 1; }
+.amazon span, .spoon span { display: inline-block; opacity: 0; }
+.zwei .spoon { position: absolute; left: 118px; top: 348px; font-weight: 750; font-size: 172px; letter-spacing: -0.035em; line-height: 1.05; white-space: nowrap; opacity: 1; }
+.zwei .claim { position: absolute; left: 126px; top: 610px; font-weight: 650; font-size: 112px; letter-spacing: -0.025em; white-space: nowrap; }
+
+/* ---------------------------------------------------------------- Grund der Produkt Screens und des Menüs */
+.grund { position: absolute; inset: 0; background:
+  radial-gradient(1300px 900px at 28% 38%, rgba(124, 58, 237, 0.3), transparent 70%),
+  radial-gradient(1000px 760px at 88% 96%, rgba(255, 79, 163, 0.17), transparent 70%),
+  linear-gradient(155deg, #1d0630 0%, #2a0738 52%, #120018 100%); }
+.grund::before { content: ""; position: absolute; inset: -40px; background: url(../assets/buehne/buehne.jpg) var(--x, 0) 0 / 5760px 1160px; filter: blur(16px) saturate(0.3); opacity: 0.2; mix-blend-mode: screen; }
+.grund::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 52%, rgba(8, 0, 14, 0.6) 100%); }
+svg.rand { position: absolute; opacity: 0.55; filter: blur(4px); transform-origin: 50% 96%; }
+.kicker { font-family: Montserrat, sans-serif; font-weight: 700; font-size: 26px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--pink-hell); }
+h2 { font-family: Unbounded, sans-serif; font-weight: 800; font-size: 92px; letter-spacing: -0.035em; line-height: 1; margin: 10px 0 0; }
+.kopf { position: absolute; left: 96px; top: 62px; z-index: 3; }
+.kopf .unter { font: 500 31px Poppins, sans-serif; color: var(--flieder); margin: 16px 0 0; }
+.ring { display: inline-grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; border: 3px solid var(--pink); font: 800 30px Unbounded, sans-serif; color: #fff; box-sizing: border-box; }
+.ml { font: 700 28px Montserrat, sans-serif; letter-spacing: 0.14em; color: var(--flieder); }
+.beliebt { font: 800 19px Montserrat, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; background: var(--pink); color: var(--acai); padding: 7px 14px; border-radius: 99px; }
+.preis { font: 700 78px/1.1 Unbounded, sans-serif; letter-spacing: -0.035em; }
+.fuss { position: absolute; left: 0; right: 0; bottom: 32px; text-align: center; font: 400 27px Poppins, sans-serif; color: rgba(233, 220, 251, 0.85); margin: 0; }
+.fuss b { color: #fff; font-weight: 600; }
+
+/* Monitor 1: Bowls */
+.p1 .seitlich { position: absolute; z-index: 3; right: 96px; top: 76px; text-align: right; font: 600 34px/1.25 Unbounded, sans-serif; letter-spacing: -0.02em; color: var(--flieder); margin: 0; }
+.groesse { position: absolute; transform-origin: 50% 100%; z-index: 2; }
+.groesse .becher { position: absolute; left: 0; top: 0; width: 100%; height: 100%; filter: drop-shadow(0 30px 36px rgba(0, 0, 0, 0.5)); }
+.groesse .schein { position: absolute; left: -34%; right: -34%; top: -14%; bottom: -20%; background: radial-gradient(closest-side, rgba(255, 79, 163, 0.42), rgba(168, 85, 247, 0.18) 55%, transparent 72%); }
+.fall { position: absolute; inset: 0; z-index: 1; }
+.fall img { position: absolute; left: 0; top: 0; opacity: 0; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.4)); }
+.schild { position: absolute; top: 834px; width: 520px; text-align: center; }
+.schild .sz { display: flex; justify-content: center; align-items: center; gap: 18px; }
+.schild .preis { margin-top: 8px; }
+
+/* Monitor 2: Matcha und Limeades */
+.held { position: absolute; }
+.held .schein { position: absolute; left: -46%; right: -46%; top: -16%; bottom: -16%; }
+.held .film { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: fill; opacity: 0;
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.held .druck { position: absolute; height: auto; }
+.held .flick { position: absolute; overflow: hidden; opacity: 0; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+.held .flick img { position: absolute; }
+.p2 .text { position: absolute; left: 1004px; top: 84px; width: 826px; }
+.p2 h2 { font-size: 92px; }
+.sorte { position: relative; height: 84px; margin-top: 18px; font: 700 62px/84px Unbounded, sans-serif; letter-spacing: -0.03em; }
+.sorte span { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; }
+.preise { margin-top: 22px; display: grid; gap: 10px; }
+.pk, .pz { display: grid; grid-template-columns: 1fr 216px 216px; align-items: center; }
+.pk { padding: 0 22px; }
+.pk span { font: 700 24px Montserrat, sans-serif; letter-spacing: 0.3em; color: var(--pink-hell); text-align: right; }
+.pz { padding: 13px 22px; border-radius: 24px; background: rgba(255, 255, 255, calc(0.045 + 0.07 * var(--w, 0))); box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.14 + 0.66 * var(--w, 0))); }
+.pz span { font: 700 32px Montserrat, sans-serif; letter-spacing: 0.05em; }
+.pz b { font: 700 46px Unbounded, sans-serif; letter-spacing: -0.03em; text-align: right; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.chip { display: inline-flex; align-items: center; gap: 12px; padding: 10px 22px 10px 14px; border-radius: 99px; font: 600 26px Poppins, sans-serif;
+  background: rgba(255, 255, 255, calc(0.05 + 0.13 * var(--w, 0))); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--f) calc(var(--w, 0) * 100%), rgba(255, 255, 255, 0.14)); }
+.chip i { width: 22px; height: 22px; border-radius: 50%; }
+.milch { font: 400 25px Poppins, sans-serif; color: rgba(233, 220, 251, 0.85); margin: 22px 0 0; }
+.leiste { position: absolute; left: 96px; right: 96px; bottom: 30px; height: 152px; display: flex; align-items: center; gap: 26px; border-top: 2px solid rgba(255, 134, 197, 0.25); padding-top: 12px; box-sizing: border-box; }
+.limkopf { width: 400px; flex: none; }
+.lpreis { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: baseline; gap: 0 16px; margin-top: 8px; }
+.lpreis span { font: 600 22px Montserrat, sans-serif; letter-spacing: 0.1em; color: var(--flieder); }
+.lpreis b { font: 700 36px Unbounded, sans-serif; letter-spacing: -0.03em; }
+.lim { display: flex; align-items: center; gap: 12px; flex: 1; }
+.lim img { height: 126px; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45)); }
+.lim span { font: 600 24px/1.15 Poppins, sans-serif; }
+
+/* Monitor 3: Kaffee */
+.tasse { position: absolute; transform-origin: 50% 100%; }
+.tasse .becher { width: 100%; height: 100%; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.5)); }
+.kschild { position: absolute; top: 738px; width: 300px; text-align: center; }
+.kschild span { height: 62px; display: flex; align-items: flex-end; justify-content: center; font: 700 24px/1.15 Montserrat, sans-serif; letter-spacing: 0.02em; color: var(--flieder); padding: 0 34px; }
+.kschild b { display: block; font: 700 43px Unbounded, sans-serif; letter-spacing: -0.035em; margin-top: 8px; }
+.dampf { position: absolute; left: 0; top: 0; mix-blend-mode: screen; pointer-events: none; }
+.eis { position: absolute; left: 1584px; top: 262px; height: 454px; }
+.eis img { height: 100%; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.5)); }
+.eistext { position: absolute; left: 1584px; top: 738px; width: 304px; text-align: center; }
+.eistext span { height: 62px; display: flex; align-items: flex-end; justify-content: center; font: 700 25px Montserrat, sans-serif; letter-spacing: 0.03em; color: var(--flieder); }
+.eistext b { display: block; font: 700 50px Unbounded, sans-serif; letter-spacing: -0.035em; margin-top: 8px; color: var(--pink-hell); }
+
+/* ---------------------------------------------------------------- Monitor 4: Menü */
+.menu .mlogo { position: absolute; left: 50px; top: 32px; height: 200px; }
+.menu h1 { position: absolute; left: 264px; top: 44px; margin: 0; font: 800 84px/1.04 Unbounded, sans-serif; letter-spacing: -0.04em; white-space: nowrap; }
+.menu .lkopf { position: absolute; display: flex; align-items: center; gap: 14px; height: 52px; white-space: nowrap; }
+.lkopf .nr { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--pink); color: var(--acai); font: 800 26px Unbounded, sans-serif;
+  box-shadow: 0 0 calc(36px * var(--w, 0)) rgba(255, 79, 163, calc(0.95 * var(--w, 0))); }
+.lkopf b { font: 700 33px Unbounded, sans-serif; letter-spacing: -0.035em; }
+.lkopf i { font: 700 15px Montserrat, sans-serif; font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink-hell); margin: 8px 0 0 6px; }
+.lkopf.klein b { font: 700 22px Montserrat, sans-serif; letter-spacing: 0.34em; text-transform: uppercase; color: color-mix(in srgb, #fff calc(var(--w, 0) * 100%), var(--pink-hell)); }
+.zeile { position: absolute; height: 54px; display: flex; align-items: center; gap: 14px; }
+.zeile img { width: 54px; height: 54px; flex: none; filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.45)); }
+.zeile span { font: 500 24px Poppins, sans-serif; letter-spacing: -0.01em; white-space: nowrap; color: color-mix(in srgb, var(--pink-hell) calc(var(--g, 0) * 100%), #fff); }
+.zeile::after { content: ""; position: absolute; left: -5px; top: -5px; width: 64px; height: 64px; border-radius: 50%; box-sizing: border-box; border: 3px solid var(--pink); box-shadow: 0 0 22px rgba(255, 79, 163, 0.85); opacity: var(--g, 0); }
+.karte { position: absolute; top: 96px; width: 326px; height: 142px; border-radius: 28px; display: flex; align-items: center; gap: 12px; padding: 0 18px; box-sizing: border-box;
+  background: rgba(255, 255, 255, calc(0.05 + 0.08 * var(--w, 0))); box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.22 + 0.78 * var(--w, 0))), 0 0 calc(44px * var(--w, 0)) rgba(255, 79, 163, calc(0.5 * var(--w, 0))); }
+.karte img { height: 118px; width: 88px; object-fit: contain; flex: none; }
+.karte .zl { display: flex; align-items: center; gap: 10px; }
+.karte .ring { width: 44px; height: 44px; font-size: 21px; border-width: 2px; }
+.karte .ml { font-size: 21px; }
+.karte .beliebt { position: absolute; right: 18px; top: -15px; font-size: 15px; padding: 6px 12px; }
+.karte .preis { font-size: 41px; margin-top: 6px; white-space: nowrap; letter-spacing: -0.045em; }
+.inkl { position: absolute; left: 1226px; top: 838px; width: 300px; padding: 16px 20px 18px; border-radius: 24px; box-sizing: border-box; background: rgba(255, 79, 163, 0.08);
+  box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.4 + 0.45 * var(--w, 0))); }
+.inkl b { display: block; font: 700 26px Unbounded, sans-serif; letter-spacing: -0.03em; color: var(--pink-hell); }
+.inkl span { display: block; font: 400 21px/1.3 Poppins, sans-serif; color: var(--flieder); margin-top: 6px; }
+.bau { position: absolute; left: 56px; top: 262px; width: 464px; height: 750px; }
+.bau .kicker { font-size: 18px; letter-spacing: 0.32em; text-align: center; white-space: nowrap; }
+.bau .schein { position: absolute; left: -12%; right: -12%; top: 40px; height: 620px; background: radial-gradient(closest-side, rgba(255, 79, 163, 0.42), rgba(168, 85, 247, 0.17) 55%, transparent 72%); }
+.bbecher { position: absolute; transform-origin: 50% 100%; opacity: 0; }
+.bbecher img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.bbecher .geist { filter: grayscale(1) brightness(1.5) contrast(0.7); opacity: 0.17; }
+.bbecher .echt { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.bbecher .druck { height: auto; }
+.flug { position: absolute; inset: 0; pointer-events: none; }
+.flug img { position: absolute; left: 0; top: 0; opacity: 0; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45)); }
+.schritt { position: absolute; left: -40px; right: -40px; top: 622px; height: 60px; }
+.schritt span { position: absolute; left: 0; right: 0; top: 0; height: 60px; display: flex; justify-content: center; align-items: center; gap: 12px; font: 700 26px Unbounded, sans-serif; letter-spacing: -0.03em; white-space: nowrap; opacity: 0; }
+.schritt i { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--pink); color: var(--acai); font: 800 23px Unbounded, sans-serif; font-style: normal; }
+.punkte { position: absolute; left: 0; right: 0; top: 700px; display: flex; justify-content: center; gap: 10px; }
+.punkte i { width: 52px; height: 8px; border-radius: 9px; background: color-mix(in srgb, var(--pink) calc(var(--w, 0) * 100%), rgba(255, 255, 255, 0.18)); }
+.mfuss { position: absolute; left: 56px; right: 56px; bottom: 24px; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid rgba(255, 134, 197, 0.22); padding-top: 13px; font: 400 25px Poppins, sans-serif; color: var(--flieder); }
+.mfuss b { font-weight: 700; color: #fff; }
+.mfuss i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); margin: 0 18px 4px; }
+.mfuss .klein { font-size: 20px; color: rgba(233, 220, 251, 0.72); }

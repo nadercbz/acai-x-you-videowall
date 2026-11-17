@@ -1,0 +1,95 @@
+/* Hochkant Menüboard 1080 x 1920. Baut auf board.css auf (Schriften, Farben, Neon, Grund, Ringe, Preise). */
+#hoch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; transform-origin: 0 0; opacity: 0; background: var(--nacht); color: #fff; font-family: Poppins, sans-serif; }
+body.bereit #hoch { opacity: 1; }
+.h-szene { position: absolute; inset: 0; display: none; overflow: hidden; }
+.h-szene .grund::before { background-size: 5760px 1920px; inset: -60px; }
+.h-lichter { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen; pointer-events: none; z-index: 40; }
+.h-wechsel { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; z-index: 50; display: none; }
+.h-kopf { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; }
+.h-kopf h2 { font-size: 104px; }
+.h-kopf .unter { font: 500 32px Poppins, sans-serif; color: var(--flieder); margin: 14px 0 0; }
+.h-fuss { position: absolute; left: 60px; right: 60px; bottom: 54px; margin: 0; text-align: center; font: 400 29px/1.45 Poppins, sans-serif; color: rgba(233, 220, 251, 0.88); z-index: 3; }
+.h-fuss b { color: #fff; font-weight: 600; }
+
+/* Film */
+.h-voll { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+.h-still { opacity: 0; transform-origin: 50% 66%; }
+.h-blitz { position: absolute; left: 520px; top: 1270px; width: 700px; height: 700px; border-radius: 50%; opacity: 0; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, rgba(255, 120, 200, 0.75), rgba(168, 85, 247, 0.25) 55%, transparent 75%); }
+.h-scrim { position: absolute; left: 0; right: 0; opacity: 0; pointer-events: none; }
+.h-scrim.oben { top: 0; height: 640px; background: linear-gradient(rgba(6, 3, 8, 0.82), rgba(6, 3, 8, 0.55) 55%, rgba(6, 3, 8, 0)); }
+.h-scrim.unten { bottom: 0; height: 380px; background: linear-gradient(rgba(6, 3, 8, 0), rgba(6, 3, 8, 0.78)); }
+.h-from, .h-amazon, .h-spoon, .h-claim { position: absolute; left: 60px; right: 60px; text-align: center; font-family: Unbounded, sans-serif; white-space: nowrap; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7); }
+.h-from { top: 78px; font-weight: 700; font-size: 74px; letter-spacing: -0.02em; opacity: 0; }
+.h-amazon { top: 150px; font-weight: 800; font-size: 170px; letter-spacing: -0.045em; line-height: 1; }
+.h-spoon { top: 342px; font-weight: 750; font-size: 78px; letter-spacing: -0.035em; }
+.h-claim { top: 1748px; font-weight: 700; font-size: 84px; letter-spacing: -0.03em; opacity: 0; }
+.h-amazon span, .h-spoon span { display: inline-block; opacity: 0; }
+
+/* Bowls */
+.h-zeile { position: absolute; left: 44px; right: 44px; height: 440px; border-radius: 40px; opacity: 0;
+  background: rgba(255, 255, 255, calc(0.035 + 0.06 * var(--w, 0))); box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.12 + 0.7 * var(--w, 0))), 0 0 calc(60px * var(--w, 0)) rgba(255, 79, 163, calc(0.35 * var(--w, 0))); }
+.h-becher { position: absolute; transform-origin: 50% 100%; z-index: 2; }
+.h-becher .becher { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.5)); }
+.h-becher .schein { position: absolute; left: -36%; right: -36%; top: -16%; bottom: -20%; background: radial-gradient(closest-side, rgba(255, 79, 163, 0.45), rgba(168, 85, 247, 0.18) 55%, transparent 72%); }
+.h-fall { position: absolute; inset: 0; z-index: 1; }
+.h-fall img { position: absolute; left: 0; top: 0; opacity: 0; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.4)); }
+.h-info { position: absolute; left: 540px; width: 470px; z-index: 3; }
+.h-info .sz { display: flex; align-items: center; gap: 16px; }
+.h-info .preis { font-size: 108px; margin-top: 10px; white-space: nowrap; }
+
+/* Build it YOUR way */
+.h-bk { position: absolute; left: 0; right: 0; top: 74px; text-align: center; font-size: 24px; }
+.h-bt { position: absolute; left: 0; right: 0; top: 112px; margin: 0; text-align: center; font: 800 104px/1.02 Unbounded, sans-serif; letter-spacing: -0.045em; }
+.h-bt em { font-style: normal; }
+.h-bt ~ .lkopf, .h-bt ~ .zeile { position: absolute; }
+.h-bt ~ .lkopf { display: flex; align-items: center; gap: 14px; height: 52px; white-space: nowrap; }
+.h-bt ~ .zeile { height: 50px; display: flex; align-items: center; gap: 14px; }
+.h-bt ~ .zeile img { width: 50px; height: 50px; }
+.h-bt ~ .zeile::after { width: 60px; height: 60px; }
+.h-karte { position: absolute; top: 428px; width: 304px; height: 150px; border-radius: 28px; display: flex; align-items: center; gap: 12px; padding: 0 16px; box-sizing: border-box;
+  background: rgba(255, 255, 255, calc(0.05 + 0.08 * var(--w, 0))); box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.22 + 0.78 * var(--w, 0))), 0 0 calc(44px * var(--w, 0)) rgba(255, 79, 163, calc(0.5 * var(--w, 0))); }
+.h-karte img { height: 124px; width: 88px; object-fit: contain; flex: none; }
+.h-karte .zl { display: flex; align-items: center; gap: 8px; }
+.h-karte .ring { width: 44px; height: 44px; font-size: 21px; border-width: 2px; }
+.h-karte .ml { font-size: 20px; }
+.h-karte .preis { font-size: 40px; margin-top: 6px; white-space: nowrap; letter-spacing: -0.045em; }
+.h-dabei { position: absolute; left: 64px; right: 64px; top: 1612px; }
+.h-dabei .kicker { font-size: 20px; letter-spacing: 0.34em; }
+.h-dabei div { display: flex; flex-wrap: nowrap; justify-content: space-between; margin-top: 12px; }
+.h-dabei i { font: 500 24px Poppins, sans-serif; font-style: normal; display: inline-flex; align-items: center; gap: 10px; color: var(--pink-hell); white-space: nowrap; }
+.h-dabei img { width: 46px; height: 46px; }
+.h-inkl { position: absolute; left: 64px; right: 64px; top: 1748px; padding: 20px 26px; border-radius: 26px; box-sizing: border-box; font: 400 26px/1.35 Poppins, sans-serif; color: var(--flieder);
+  background: rgba(255, 79, 163, 0.08); box-shadow: inset 0 0 0 2px rgba(255, 79, 163, calc(0.4 + 0.45 * var(--w, 0))); }
+.h-inkl b { font: 700 30px Unbounded, sans-serif; letter-spacing: -0.03em; color: var(--pink-hell); }
+
+/* Matcha */
+.h-held { position: absolute; }
+.h-sorte { position: absolute; left: 0; right: 0; top: 1062px; height: 90px; }
+.h-sorte span { position: absolute; left: 50%; top: 0; white-space: nowrap; opacity: 0; font: 700 74px/90px Unbounded, sans-serif; letter-spacing: -0.035em; }
+.h-preise { position: absolute; left: 90px; right: 90px; top: 1170px; margin: 0; }
+.h-chips { position: absolute; left: 70px; right: 70px; top: 1400px; justify-content: center; margin: 0; }
+.h-milch { position: absolute; left: 60px; right: 60px; top: 1530px; margin: 0; text-align: center; font: 400 26px Poppins, sans-serif; color: rgba(233, 220, 251, 0.85); }
+.h-leiste { position: absolute; left: 50px; right: 50px; top: 1600px; height: 290px; border-top: 2px solid rgba(255, 134, 197, 0.25); }
+.h-lkopf { display: flex; align-items: baseline; justify-content: center; gap: 28px; margin-top: 18px; }
+.h-lkopf .kicker { font-size: 22px; }
+.h-lkopf .lp { font: 600 23px Montserrat, sans-serif; letter-spacing: 0.08em; color: var(--flieder); }
+.h-lkopf .lp b { font: 700 34px Unbounded, sans-serif; letter-spacing: -0.03em; color: #fff; margin-left: 6px; }
+.h-lims { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 14px; }
+.h-lims .lim { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.h-lims img { height: 150px; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45)); }
+.h-lims span { font: 600 22px/1.15 Poppins, sans-serif; text-align: center; }
+
+/* Kaffee */
+.h-tasse { position: absolute; transform-origin: 50% 100%; }
+.h-tasse .becher { width: 100%; height: 100%; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.5)); }
+.h-kschild { position: absolute; width: 320px; text-align: center; }
+.h-kschild span { display: block; font: 700 26px Montserrat, sans-serif; letter-spacing: 0.02em; color: var(--flieder); }
+.h-kschild b { display: block; font: 700 54px Unbounded, sans-serif; letter-spacing: -0.035em; margin-top: 6px; }
+.h-dampf { position: absolute; left: 0; top: 0; mix-blend-mode: screen; pointer-events: none; }
+.h-eis { position: absolute; left: 130px; top: 1520px; height: 300px; }
+.h-eis img { height: 100%; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.5)); }
+.h-eistext { position: absolute; left: 400px; top: 1590px; }
+.h-eistext span { display: block; font: 700 28px Montserrat, sans-serif; letter-spacing: 0.04em; color: var(--flieder); }
+.h-eistext b { display: block; font: 700 74px Unbounded, sans-serif; letter-spacing: -0.035em; color: var(--pink-hell); margin-top: 4px; }
+.h-kaffee .h-fuss { bottom: 40px; font-size: 25px; }

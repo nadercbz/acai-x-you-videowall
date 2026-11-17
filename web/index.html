@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Açaí x You Videowall</title>
+<link rel="stylesheet" href="css/board.css">
+</head>
+<body>
+
+<div id="blende"><div id="board"><div id="wand"></div></div></div>
+<script src="js/formen.js"></script>
+<script src="js/daten.js"></script>
+<script src="js/kern.js"></script>
+<script src="js/dschungel.js"></script>
+<script src="js/produkte.js"></script>
+<script src="js/menu.js"></script>
+<script>
+  (function () {
+    const K = window.K, wand = document.getElementById("wand");
+    K.produkteBauen();
+    K.dschungelBauen();
+    K.wechselBauen(wand);
+    K.menuBauen();
+    if (new URLSearchParams(location.search).has("fugen"))
+      [1920, 3840, 5760].forEach((x) => { K.el("div", "fuge", document.getElementById("board")).style.left = x + "px"; });
+    K.fertig = () => {
+      // Spruch auf die Monitorbreite einpassen: kein Wort darf über die Kante laufen
+      const passe = (sel, max) => { const e = document.querySelector(sel), w = e.scrollWidth; if (w > max) e.style.fontSize = (parseFloat(getComputedStyle(e).fontSize) * max) / w + "px"; };
+      passe(".amazon", 1680); passe(".spoon", 1680); passe(".zwei .claim", 1640); passe(".eins .from", 1640);
+    };
+    K.start();
+  })();
+</script>
+</body>
+</html>
